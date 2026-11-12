@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pickle">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PickleChat</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥒</text></svg>" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">🥒 <span id="brand-name">PickleChat</span></div>
+      <button id="new-chat" class="new-chat-btn">＋ New chat</button>
+      <nav id="conversation-list" class="conversation-list"></nav>
+      <div class="sidebar-bottom">
+        <button id="settings-btn" class="settings-btn">⚙️ Settings</button>
+        <div id="mode-badge" class="mode-badge demo">Demo mode</div>
+      </div>
+    </aside>
+
+    <!-- Chat area -->
+    <main class="main">
+      <header class="chat-header">
+        <h1 id="chat-title">New chat</h1>
+      </header>
+
+      <section id="messages" class="messages"></section>
+
+      <footer class="composer-wrap">
+        <div id="pending-files" class="pending-files"></div>
+        <div class="composer">
+          <button id="attach-btn" class="attach-btn" title="Attach an image or text file">📎</button>
+          <input id="file-input" type="file" multiple hidden
+            accept="image/*,.txt,.md,.markdown,.js,.ts,.jsx,.tsx,.json,.csv,.html,.css,.py,.java,.c,.cpp,.h,.log,.yml,.yaml,.xml,.ini,.sh,.ps1" />
+          <textarea id="input" rows="1" placeholder="Message PickleChat…" autofocus></textarea>
+          <button id="send" class="send-btn" title="Send">➤</button>
+        </div>
+        <div class="composer-hint">Enter to send · Shift+Enter for a new line · 📎 to attach</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Settings modal -->
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-card">
+      <h2>⚙️ Settings</h2>
+
+      <h3>Personality &amp; knowledge</h3>
+      <label>Bot name
+        <input id="bot-name" type="text" placeholder="PickleChat" />
+      </label>
+      <label>Personality
+        <textarea id="personality" rows="3" placeholder="e.g. Friendly, playful, explains things in simple words…"></textarea>
+      </label>
+      <label>Knowledge notes <span class="muted">(read before every reply)</span>
+        <textarea id="knowledge" rows="4" placeholder="Paste facts, notes, or info the bot should know…"></textarea>
+      </label>
+
+      <h3>Look</h3>
+      <label>Theme
+        <select id="theme">
+          <option value="pickle">🥒 Pickle (green dark)</option>
+          <option value="ocean">🌊 Ocean (blue dark)</option>
+          <option value="sunset">🌇 Sunset (purple dark)</option>
+          <option value="daylight">☀️ Daylight (light)</option>
+        </select>
+      </label>
+
+      <h3>AI connection</h3>
+      <label>API key <span class="muted">(leave empty for demo mode)</span>
+        <input id="api-key" type="password" placeholder="sk-…" autocomplete="off" />
+      </label>
+      <label>Model
+        <input id="model" type="text" placeholder="gpt-4o-mini" />
+      </label>
+      <label>API base URL <span class="muted">(for Groq, OpenRouter, etc.)</span>
+        <input id="base-url" type="text" placeholder="https://api.openai.com/v1" />
+      </label>
+      <label>Access password <span class="muted">(only if the server asks for one)</span>
+        <input id="app-password" type="password" placeholder="" autocomplete="off" />
+      </label>
+
+      <p class="muted small">
+        Your API key is stored only in this browser and sent only to this app's server.
+        On a public deployment, keep the real key on the server (env var), never in the browser.
+      </p>
+      <div class="modal-actions">
+        <button id="settings-cancel" class="ghost-btn">Cancel</button>
+        <button id="settings-save" class="primary-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
